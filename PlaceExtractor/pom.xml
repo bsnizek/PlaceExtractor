@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" >
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">	
+
+<!-- 
+JMapMatcher
+
+Copyright (c) 2011 Bernhard Barkow, Hans Skov-Petersen, Bernhard Snizek and Contributors
+
+mail: bikeability@life.ku.dk
+web: http://www.bikeability.dk
+
+This program is free software; you can redistribute it and/or modify it under 
+the terms of the GNU General Public License as published by the Free Software 
+Foundation; either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT 
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with 
+this program; if not, see <http://www.gnu.org/licenses/>.
+
+ -->
+
+	<properties>
+		<geotools.version>2.7-M3</geotools.version>
+		<spatial.test.osm.version>20100819</spatial.test.osm.version>
+		<spatial.test.shp.version>20100819</spatial.test.shp.version>
+		<bundle.namespace>org.life.sl</bundle.namespace>
+		<build.plugins.plugin.version>1.0</build.plugins.plugin.version>
+		<development-dir>/Users/besn/git/JMapMatching/JMapMatchingGUI</development-dir>
+
+	</properties>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>mapmatching</artifactId>
+	<groupId>org.life.sl</groupId>
+	<version>3.6.3.Final</version>
+	<name>LIFE Bikeability MapMatching</name>
+	<description>The wonderful mapmatching core</description>
+	<url>http://www.bikeability.dk</url>
+	<issueManagement>
+		<system>github</system>
+		<url>https://github.com/bsnizek/mapmatching/issues</url>
+	</issueManagement>
+	<inceptionYear>June 2011</inceptionYear>
+
+	<scm>
+		<connection>https</connection>
+		<developerConnection>Bernhard Snizek</developerConnection>
+		<tag>cool mapmatching research</tag>
+		<url>https://github.com/bsnizek/JMapMatching</url>
+	</scm>
+	<organization>
+		<name>Forest &amp; Landscape Denmark</name>
+		<url>http://sl.life.ku.dk</url>
+	</organization>
+	<build>
+		<defaultGoal>install</defaultGoal>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>attached</goal>
+						</goals>
+						<phase>package</phase>
+						<configuration>
+							<descriptorRefs>
+								<descriptorRef>shpimporter</descriptorRef>
+							</descriptorRefs>
+							<archive>
+								<manifest>
+									<mainClass>org.life.sl.importers.ShapeFileImporter</mainClass>
+								</manifest>
+							</archive>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>1.5</source>
+					<target>1.5</target>
+					<optimize>true</optimize>
+				</configuration>
+			</plugin>
+
+			<!-- OSX PLUGIN -->
+			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>osxappbundle-maven-plugin</artifactId> 
+				<version>1.0-alpha-2</version> <configuration> <mainClass>org.life.sl.mapmatching.gui.JMapMatcherGUI</mainClass> 
+				</configuration> <executions> <execution> <phase>package</phase> <goals> 
+				<goal>bundle</goal> </goals> </execution> </executions> </plugin> -->
+
+		</plugins>
+	</build>
+
+	<developers>
+		<developer>
+			<id>bsnizek</id>
+			<name>Bernhard Snizek</name>
+			<email>besn@life.ku.dk</email>
+			<timezone>+1</timezone>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>bb</id>
+			<name>Bernhard Barkow</name>
+			<email>bb@creativeeyes.at</email>
+			<timezone>+1</timezone>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>GNU Affero General Public License, Version 3</name>
+			<url>http://www.gnu.org/licenses/agpl-3.0-standalone.html</url>
+		</license>
+	</licenses>
+
+	<dependencies>
+		
+		
+
+
+
+		<dependency>
+			<groupId>org.geotools</groupId>
+			<artifactId>gt-main</artifactId>
+			<version>${geotools.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.geotools</groupId>
+			<artifactId>gt-shapefile</artifactId>
+			<version>${geotools.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.geotools</groupId>
+			<artifactId>gt-render</artifactId>
+			<version>${geotools.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.geotools</groupId>
+			<artifactId>gt2-graph</artifactId>
+			<version>2.5-M1</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.geotools</groupId>
+			<artifactId>gt-graph</artifactId>
+			<version>${geotools.version}</version>
+		</dependency>
+
+		<!-- Hibernate uses slf4j for logging, for our purposes here use the simple 
+			backend -->
+
+		<!-- Hibernate gives you a choice of bytecode providers between cglib and 
+			javassist -->
+
+		<!-- The tutorials use JUnit test cases to illustrate usage -->
+
+		<!-- The tutorials use the H2 in-memory database -->
+		<dependency>
+			<groupId>com.vividsolutions</groupId>
+			<artifactId>jts</artifactId>
+			<version>1.11</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		
+		
+		<!-- Hibernate Spatial for postgis. This will include Hibernate Spatial 
+			Core and JTS -->
+
+		<!-- the Postgis JDBC driver -->
+
+		<!-- the postgresql driver -->
+
+		<!-- Hibernate uses slf4j for logging, for our purposes here use the simple 
+			backend -->
+
+
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>OSGEO GeoTools repo</id>
+			<url>http://download.osgeo.org/webdav/geotools</url>
+		</repository>
+		<repository>
+			<id>Hibernate Spatial repo</id>
+			<url>http://www.hibernatespatial.org/repository</url>
+		</repository>
+		<!-- add JBOSS repository for easy access to Hibernate libraries -->
+		<repository>
+			<id>JBOSS</id>
+			<url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
+		</repository>
+		<repository>
+			<id>osgeo</id>
+			<name>Open Source Geospatial Foundation Repository</name>
+			<url>http://download.osgeo.org/webdav/geotools/</url>
+		</repository>
+
+		<repository>
+			<id>josm-public-repository</id>
+			<name>Publically available JOSM</name>
+			<url>http://josm.openstreetmap.de/download/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>jts-public-repository</id>
+			<name>Publically available JTS</name>
+			<url>http://mirrors.ibiblio.org/pub/mirrors/maven2/com/vividsolutions/jts/1.8/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>jfrog-third-party-releases</id>
+			<name>The jfrog repository for 3rd party releases</name>
+			<url>http://repo.jfrog.org/artifactory/third-party-releases-local</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>jfrog-plugins-dist</id>
+			<name>jfrog-plugins-dist</name>
+			<url>http://repo.jfrog.org/artifactory/plugins-releases-local</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+
+	<profiles>
+		<profile>
+			<id>test-default</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>default</value>
+				</property>
+			</activation>
+			<properties>
+				<spatial.test.mode>default</spatial.test.mode>
+			</properties>
+		</profile>
+		<profile>
+			<id>test-short</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>short</value>
+				</property>
+			</activation>
+			<properties>
+				<spatial.test.mode>short</spatial.test.mode>
+			</properties>
+		</profile>
+		<profile>
+			<id>test-dev</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>dev</value>
+				</property>
+			</activation>
+			<properties>
+				<spatial.test.mode>dev</spatial.test.mode>
+			</properties>
+		</profile>
+		<profile>
+			<id>test-long</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>long</value>
+				</property>
+			</activation>
+			<properties>
+				<spatial.test.mode>long</spatial.test.mode>
+			</properties>
+		</profile>
+	</profiles>
+
+	<reporting>
+		<plugins>
+			<!-- <plugin> <artifactId>maven-javadoc-plugin</artifactId> <configuration> 
+				<groups> <group> <title>GIS and Spatial</title> <packages>org.life:org.org.life.*</packages> 
+				</group> </groups> </configuration> </plugin> -->
+		</plugins>
+	</reporting>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.postgis</groupId>
+				<artifactId>postgis-main</artifactId>
+				<version>1.3.3</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>
