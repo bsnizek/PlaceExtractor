@@ -2,6 +2,10 @@ package ku.science.dgnrap.placeextractor;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.xml.bind.JAXBException;
+
+import ku.science.dgnrap.gpxloader.GPXLoader;
+
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Point;
 
@@ -33,7 +37,7 @@ public class PlaceExtractor {
 		this.startTS = lastTS;
 		
 		this.currC = ls.get(0).getCoordinate();
-		this.endTS = ls.get(0).getTimestamp();
+		this.endTS = ls.get(0).getTimeStamp();
 		
 		this.clustering = false;
 		this.distanceBuffer.add(dist);
@@ -53,7 +57,7 @@ public class PlaceExtractor {
 		
 		while (i < ls.size()) {
 			currC = ls.get(i+1).getCoordinate();
-			endTS = ls.get(i+1).getTimestamp();
+			endTS = ls.get(i+1).getTimeStamp();
 			
 			double distance = oldC.distance(currC) / noisyData; // line 17
 			
@@ -88,11 +92,31 @@ public class PlaceExtractor {
 
 	/**
 	 * @param args
+	 * @throws JAXBException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws JAXBException {
 		PlaceExtractor pe = new PlaceExtractor();
+		pe.createPauseSet("data/57039001-20111005.gpx");
 		
 
+	}
+
+	private void createPauseSet(String string) throws JAXBException {
+		
+		GPXLoader gpxLoader = new GPXLoader();
+		ArrayList<GPSPoint> track = gpxLoader.readTrack(string);
+		
+		
+		double t = 0;
+		ArrayList<Point> db = null;
+		
+		Coordinate lastC = null;
+		Date lastTS = null;
+		double dist = 0d;
+		double dur = 0d;
+		
+		this.identifyPlaces(track, t, db, lastC, lastTS, dist, dur);
+		
 	}
 
 }
