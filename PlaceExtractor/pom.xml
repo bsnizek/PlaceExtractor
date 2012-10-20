@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" >
-	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">	
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+	http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-<!-- 
-JMapMatcher
-
-Copyright (c) 2011 Bernhard Barkow, Hans Skov-Petersen, Bernhard Snizek and Contributors
-
-mail: bikeability@life.ku.dk
-web: http://www.bikeability.dk
-
-This program is free software; you can redistribute it and/or modify it under 
-the terms of the GNU General Public License as published by the Free Software 
-Foundation; either version 3 of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful, but WITHOUT 
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
-FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with 
-this program; if not, see <http://www.gnu.org/licenses/>.
-
- -->
+	<!-- JMapMatcher Copyright (c) 2011 Bernhard Barkow, Hans Skov-Petersen, 
+		Bernhard Snizek and Contributors mail: bikeability@life.ku.dk web: http://www.bikeability.dk 
+		This program is free software; you can redistribute it and/or modify it under 
+		the terms of the GNU General Public License as published by the Free Software 
+		Foundation; either version 3 of the License, or (at your option) any later 
+		version. This program is distributed in the hope that it will be useful, 
+		but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
+		or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for 
+		more details. You should have received a copy of the GNU General Public License 
+		along with this program; if not, see <http://www.gnu.org/licenses/>. -->
 
 	<properties>
 		<geotools.version>2.7-M3</geotools.version>
@@ -30,7 +21,8 @@ this program; if not, see <http://www.gnu.org/licenses/>.
 		<spatial.test.shp.version>20100819</spatial.test.shp.version>
 		<bundle.namespace>org.life.sl</bundle.namespace>
 		<build.plugins.plugin.version>1.0</build.plugins.plugin.version>
-		<development-dir>/Users/besn/git/JMapMatching/JMapMatchingGUI</development-dir>
+		<development-dir>/Users/besn/git/PlaceExtractor/PlaceExtractor
+		</development-dir>
 
 	</properties>
 
@@ -134,10 +126,10 @@ this program; if not, see <http://www.gnu.org/licenses/>.
 	</licenses>
 
 	<dependencies>
-		
-		
 
-
+		<!-- <dependency> <groupId>mskruch.gps</groupId> <artifactId>gps-tools</artifactId> 
+			<version>1.0-SNAPSHOT</version> <scope>system</scope> <systemPath>${development-dir}/non-maven-jars/fit.jar</systemPath> 
+			</dependency> -->
 
 		<dependency>
 			<groupId>org.geotools</groupId>
@@ -170,15 +162,6 @@ this program; if not, see <http://www.gnu.org/licenses/>.
 			<version>${geotools.version}</version>
 		</dependency>
 
-		<!-- Hibernate uses slf4j for logging, for our purposes here use the simple 
-			backend -->
-
-		<!-- Hibernate gives you a choice of bytecode providers between cglib and 
-			javassist -->
-
-		<!-- The tutorials use JUnit test cases to illustrate usage -->
-
-		<!-- The tutorials use the H2 in-memory database -->
 		<dependency>
 			<groupId>com.vividsolutions</groupId>
 			<artifactId>jts</artifactId>
@@ -186,19 +169,19 @@ this program; if not, see <http://www.gnu.org/licenses/>.
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
-		
-		
-		<!-- Hibernate Spatial for postgis. This will include Hibernate Spatial 
-			Core and JTS -->
 
-		<!-- the Postgis JDBC driver -->
-
-		<!-- the postgresql driver -->
-
-		<!-- Hibernate uses slf4j for logging, for our purposes here use the simple 
-			backend -->
-
-
+		<dependency>
+			<groupId>javax.xml</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>fit</groupId>
+			<artifactId>fit</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${development-dir}/non-maven-jars/fit.jar</systemPath>
+		</dependency>
 	</dependencies>
 
 	<repositories>
@@ -213,7 +196,8 @@ this program; if not, see <http://www.gnu.org/licenses/>.
 		<!-- add JBOSS repository for easy access to Hibernate libraries -->
 		<repository>
 			<id>JBOSS</id>
-			<url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
+			<url>https://repository.jboss.org/nexus/content/repositories/releases/
+			</url>
 		</repository>
 		<repository>
 			<id>osgeo</id>
@@ -233,7 +217,8 @@ this program; if not, see <http://www.gnu.org/licenses/>.
 		<repository>
 			<id>jts-public-repository</id>
 			<name>Publically available JTS</name>
-			<url>http://mirrors.ibiblio.org/pub/mirrors/maven2/com/vividsolutions/jts/1.8/</url>
+			<url>http://mirrors.ibiblio.org/pub/mirrors/maven2/com/vividsolutions/jts/1.8/
+			</url>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
@@ -242,7 +227,8 @@ this program; if not, see <http://www.gnu.org/licenses/>.
 		<repository>
 			<id>jfrog-third-party-releases</id>
 			<name>The jfrog repository for 3rd party releases</name>
-			<url>http://repo.jfrog.org/artifactory/third-party-releases-local</url>
+			<url>http://repo.jfrog.org/artifactory/third-party-releases-local
+			</url>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
